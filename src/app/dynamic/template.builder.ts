@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { MetaDefinition } from "../entity";
 import 'reflect-metadata';
 
 function getClass(object) {
@@ -14,6 +15,12 @@ export class DynamicTemplateBuilder {
       let properties = Object.keys(entity);
 
       let o = entity as Object;
+
+      // let b = Reflect.getMetadata("design:paramtypes", entity, "Entity1");
+      let exist1 = Reflect.hasMetadata("types", entity);
+      let exist2 = Reflect.hasMetadata("metaClass", entity);
+      let metaInfo: MetaDefinition = Reflect.getMetadata("types", entity);
+      let metaInfo1 = Reflect.getMetadata("options", entity);
 
       let template = "<form >";
 

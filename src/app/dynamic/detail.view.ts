@@ -5,7 +5,7 @@ import { OnChanges,SimpleChange,ComponentFactory} from '@angular/core';
 import { IHaveDynamicData, DynamicTypeBuilder } from './type.builder';
 import { DynamicTemplateBuilder }               from './template.builder';
 
-import { Entity, Entity1 } from '../entity';
+import { Entity, Entity1, SampleEntity } from '../entity';
 
 /*
 function logType(target : any, key : string) {
@@ -38,10 +38,12 @@ export class DynamicDetail implements AfterViewInit, OnChanges, OnDestroy
     
     // example entity ... to be recieved from other app parts
     // this is kind of candiate for @Input
-    protected entity: Entity = new Entity( 
-           "ABC123", "A description of this Entity", 23, 1234)
+    
+    // protected entity: Entity = new Entity("ABC123", "A description of this Entity", 23, 1234)
 
     // protected entity: Entity1 = new Entity1("ABC123", 123);
+
+    protected entity: SampleEntity = new SampleEntity(1, "abc123", "this is abc123");
 
     // wee need Dynamic component builder 11
     constructor(

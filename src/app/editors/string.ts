@@ -14,7 +14,7 @@ import {CommonEditor} from './common';
       </dd>
     </dl>`,
 })
-export class StringEditor { // implements CommonEditor{
-    @Input() public propertyName: string;
-    @Input() public entity: any;
+export class StringEditor extends CommonEditor{
+    // @Input() public propertyName: string;
+    // @Input() public entity: any;
 };

@@ -1,6 +1,8 @@
 import {Component, Input} from '@angular/core';
 import {Observable}       from "rxjs/Rx";
 
+import {CommonEditor} from './common';
+
 @Component({
     selector: 'text-editor',
     template: `
@@ -13,7 +15,7 @@ import {Observable}       from "rxjs/Rx";
       </dd>
     </dl>`,
 })
-export class TextEditor {
-    @Input() public propertyName: string;
-    @Input() public entity: any;
+export class TextEditor extends CommonEditor{
+    // @Input() public propertyName: string;
+    // @Input() public entity: any;
 };
