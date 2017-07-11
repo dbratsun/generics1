@@ -5,6 +5,8 @@ import { /* COMPILER_PROVIDERS, JitCompiler, CompileMetadataResolver, CompilerCo
 import { AppComponent } from './app.component';
 import { DynamicModule } from './dynamic/dynamic.module';
 
+import { MaterialEditComponent} from './modules/material/material-edit.component';
+
 // Need an exported function to make it work with AOT:
 export function createJitCompiler () {
     return new JitCompilerFactory([{useDebug: false, useJit: true}]).createCompiler();
@@ -12,7 +14,8 @@ export function createJitCompiler () {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MaterialEditComponent
   ],
   imports: [
     BrowserModule,

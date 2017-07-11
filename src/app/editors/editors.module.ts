@@ -1,3 +1,4 @@
+import { DynamicDetailComponent } from './../dynamic/detail.view';
 import { NgModule } from '@angular/core'
 import { CommonModule} from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -9,7 +10,8 @@ import { NumberEditor } from './number';
 export const DYNAMIC_DIRECTIVES = [
     forwardRef( () => StringEditor),
     forwardRef( () => TextEditor),
-    forwardRef( () => NumberEditor)
+    forwardRef( () => NumberEditor),
+    DynamicDetailComponent
 ]
 
 @NgModule({
@@ -32,6 +34,6 @@ export class EditorsModule {
         return {
             ngModule: EditorsModule,
             providers: []
-        }   
+        }
     }
 }
