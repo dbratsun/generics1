@@ -3,7 +3,9 @@ import { BaseEntity} from './base.entity';
 
 
 // @metaClass("This_is_a_sample_entity")
-export class Material extends BaseEntity {
+export class Material { // extends BaseEntity {
+    @MetaPropertyDecorator({alias: 'ID', size: 10, description: 'This is a ID'})
+    public id: number;
     @MetaPropertyDecorator({alias: 'Code', size: 10, description: 'This is a Code'})
     public code: number;
     @MetaPropertyDecorator({alias: 'Name', description: 'This is a Name'})
@@ -12,7 +14,8 @@ export class Material extends BaseEntity {
     public description?: string;
 
     constructor(id: number, code: number, name: string, description?: string) {
-        super(id);
+        // super(id);
+        this.id = id;
         this.code = code;
         this.name = name;
         this.description = description;

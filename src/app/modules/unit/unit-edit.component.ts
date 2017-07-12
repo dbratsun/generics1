@@ -16,7 +16,7 @@ export class UnitEditComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.unit = new Unit(1, 'kg', 'this is kilo', 'this is a Description');
+    this.unit = new Unit(1, 'kg', '02', 'this is a kilo', 'this is a Description');
   }
 }
 

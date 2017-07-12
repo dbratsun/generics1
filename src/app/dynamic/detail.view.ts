@@ -11,9 +11,8 @@ import { Material } from '../models/material.entity';
   selector: 'app-dynamic-detail',
   template: `
     <div>
-        check/uncheck to use INPUT vs TEXTAREA:
-        <input type="checkbox" #val (click)="refreshContent(val.checked)" /><hr />
-        <div #dynamicContentPlaceHolder></div>  <hr />
+        <div #dynamicContentPlaceHolder></div>  
+        <hr />
         entity: <pre>{{entity | json}}</pre>
     </div>
   `

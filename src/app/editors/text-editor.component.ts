@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 
-import {CommonEditor} from './common';
+import {CommonEditor} from './common-editor.abstract';
 
 @Component({
     selector: 'app-text-editor',
@@ -15,7 +15,7 @@ import {CommonEditor} from './common';
       </dd>
     </dl>`,
 })
-export class TextEditor extends CommonEditor {
+export class TextEditorComponent extends CommonEditor {
     // @Input() public propertyName: string;
     // @Input() public entity: any;
 };

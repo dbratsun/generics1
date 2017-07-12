@@ -3,14 +3,14 @@ import { NgModule } from '@angular/core'
 import { CommonModule} from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { forwardRef } from '@angular/core';
-import { StringEditor } from './string';
-import { TextEditor } from './text';
-import { NumberEditor } from './number';
+import { StringEditorComponent } from './string-editor.component';
+import { TextEditorComponent } from './text-editor.component';
+import { NumberEditorComponent } from './number-editor.component';
 
 export const DYNAMIC_DIRECTIVES = [
-    forwardRef( () => StringEditor),
-    forwardRef( () => TextEditor),
-    forwardRef( () => NumberEditor),
+    forwardRef( () => StringEditorComponent),
+    forwardRef( () => TextEditorComponent),
+    forwardRef( () => NumberEditorComponent),
     DynamicDetailComponent
 ]
 

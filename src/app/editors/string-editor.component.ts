@@ -1,19 +1,18 @@
 import {Component, Input} from '@angular/core';
-import {Observable}       from "rxjs/Rx";
+import {Observable} from 'rxjs/Rx';
+import {CommonEditor} from './common-editor.abstract';
 
 @Component({
-    selector: 'number-editor',
+    selector: 'app-string-editor',
     template: `
     <dl>
       <dt>{{propertyName}}</dt>
       <dd>
         <input
-          type="number"  
+          type="text"
           [(ngModel)]="entity[propertyName]"  />
       </dd>
     </dl>`,
 })
-export class NumberEditor { 
-    @Input() public propertyName: string;
-    @Input() public entity: any;
-};
+export class StringEditorComponent extends CommonEditor{
+}
