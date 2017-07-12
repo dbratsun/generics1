@@ -1,0 +1,62 @@
+<header class="header-1">
+    <div class="branding">
+    <a [routerLink]="['/']" class="nav-link">
+        <clr-icon shape="shield"></clr-icon>
+        <span class="title">Generic Sample</span>
+    </a>
+    </div>
+    <div class="header-nav">
+        <a *ngFor="let headerLink of headerLinks" [routerLink]="headerLink.link" routerLinkActive="active" (click)="toggleActive(headerLink)" class="nav-link">
+            <!--
+                <clr-icon [attr.shape]="headerLink.icon" class="nav-icon"></clr-icon>
+            -->
+            <span class="nav-text">{{headerLink.label}}</span>
+        </a>
+    </div>
+    <div class="header-actions">
+    <clr-dropdown class="dropdown bottom-right">
+        <button class="nav-icon" clrDropdownToggle>
+        <clr-icon shape="user"></clr-icon>
+        <clr-icon shape="caret down"></clr-icon>
+        </button>
+        <div class="dropdown-menu">
+        <a clrDropdownItem>About</a>
+        <a clrDropdownItem>Preferences</a>
+        <a clrDropdownItem>Log out</a>
+        </div>
+    </clr-dropdown>
+    </div>
+</header>
+<app-sub-nav class="11111" [subLinks]="getSubItems()" test="testStr"></app-sub-nav>
+<!--
+<nav class="navbar navbar-toggleable-md navbar-light fixed-top bg-faded">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">
+        <img class="d-inline-block align-top" src="assets/images/logo.svg" width="30" height="30 "alt="Logo">
+        Olive Identity
+  </a>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link" href="#">Region</a>
+        </li>
+    </ul>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <nav-item-button fa_icon="fa-cog" (activate)="toggleSettings()"></nav-item-button>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="https://github.com/dbratsun"><i class="fa fa-github" aria-hidden="true"></i></a>
+        </li>
+    </ul>
+  </div>
+</nav>
+-->

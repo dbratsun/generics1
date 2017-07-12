@@ -1,11 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Compiler } from '@angular/core';
-import { /* COMPILER_PROVIDERS, JitCompiler, CompileMetadataResolver, CompilerConfig,*/ JitCompilerFactory } from '@angular/compiler';
+import { JitCompilerFactory } from '@angular/compiler';
+
+import { ClarityModule } from 'clarity-angular';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app.routes';
 import { DynamicModule } from './dynamic/dynamic.module';
-
-import { MaterialEditComponent} from './modules/material/material-edit.component';
+import { UiModule } from './ui/ui.module';
+import { ModulesModule } from './modules/modules.module';
 
 // Need an exported function to make it work with AOT:
 export function createJitCompiler () {
@@ -14,20 +17,17 @@ export function createJitCompiler () {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MaterialEditComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
+    ClarityModule.forRoot(),
+    UiModule,
+    ModulesModule,
     DynamicModule.forRoot()
   ],
   providers: [
-    // COMPILER_PROVIDERS
-    // JitCompiler,
-    // CompileMetadataResolver,
-    // CompilerConfig
-    // JitCompilerFactory,
-    // JitCompiler
     { provide: Compiler, useFactory: createJitCompiler }
   ],
   bootstrap: [AppComponent]

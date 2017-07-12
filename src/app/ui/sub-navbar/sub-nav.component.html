@@ -1,0 +1,7 @@
+<nav class="subnav" [clr-nav-level]="1">
+    <ul class="nav">
+        <li *ngFor="let subLink of subLinks" class="app-nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="subLink.link">{{subLink.label}}</a>
+        </li>
+    </ul>
+</nav>
