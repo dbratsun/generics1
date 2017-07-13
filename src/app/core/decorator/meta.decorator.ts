@@ -22,7 +22,7 @@ function MetaClassDecorator(className: string) {
 
 export const MetaPropertyDecorator = (options): PropertyDecorator => {
     return (target, property) => {
-        const entity = target.constructor; // .prototype;
+        const entity = target.constructor.prototype;
         console.log('property target: ', entity);
         const metadata = Reflect.getMetadata('options', entity) || {}
         const propertyType = Reflect.getMetadata('design:type', entity, property);

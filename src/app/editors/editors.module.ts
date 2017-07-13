@@ -1,3 +1,5 @@
+import { ClarityStringEditorComponent } from './clarity/clarity.string-editor.component';
+import { ClarityNumberEditorComponent } from './clarity/clarity.number-editor.component';
 import { DynamicDetailComponent } from './../dynamic/detail.view';
 import { NgModule } from '@angular/core'
 import { CommonModule} from '@angular/common';
@@ -11,6 +13,8 @@ export const DYNAMIC_DIRECTIVES = [
     forwardRef( () => StringEditorComponent),
     forwardRef( () => TextEditorComponent),
     forwardRef( () => NumberEditorComponent),
+    forwardRef( () => ClarityNumberEditorComponent),
+    forwardRef( () => ClarityStringEditorComponent),
     DynamicDetailComponent
 ]
 
