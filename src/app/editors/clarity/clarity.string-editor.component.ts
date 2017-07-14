@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Renderer } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { CommonEditor } from '../common-editor.abstract';
 import { ClarityCommonEditor } from './clarity.common-editor.abstract';
@@ -8,18 +8,11 @@ import { ClarityCommonEditor } from './clarity.common-editor.abstract';
     template: `
     <div class="form-group">
       <label [for]="id">{{alias}}</label>
-      <input type="text" [id]="id" [(ngModel)]="entity[propertyName]">
+      <input #input type="text" [id]="id" [(ngModel)]="entity[propertyName]">
     </div>`,
 })
-export class ClarityStringEditorComponent extends ClarityCommonEditor implements OnInit{
-  @Input() size: string;
-  public sizeText: string = '';
-  ngOnInit() {
-    if (this.size) {
-      this.sizeText = 'size="30"'
-    }
-    else {
-      this.sizeText = '';
-    }
+export class ClarityStringEditorComponent extends ClarityCommonEditor { // implements OnInit{
+  constructor(render: Renderer) {
+    super(render);
   }
 }

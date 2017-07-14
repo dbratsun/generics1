@@ -11,7 +11,7 @@ import { Material } from '../models/material.entity';
   selector: 'app-dynamic-detail',
   template: `
     <div>
-        <div #dynamicContentPlaceHolder></div>  
+        <div #dynamicContentPlaceHolder></div>
         <hr />
         entity: <pre>{{entity | json}}</pre>
     </div>
@@ -75,13 +75,16 @@ export class DynamicDetailComponent implements /* AfterViewInit,*/ OnChanges, On
     /** IN CASE WE WANT TO RE/Gerante - we need cean up */
 
     // this is the best moment where to start to process dynamic stuff
-    /*
+
     public ngAfterViewInit(): void
     {
+        if (this.wasViewInitialized) {
+            return;
+        }
         this.wasViewInitialized = true;
         this.refreshContent();
     }
-    */
+
     // wasViewInitialized is an IMPORTANT switch
     // when this component would have its own changing @Input()
     // - then we have to wait till view is intialized - first OnChange is too soon
@@ -93,6 +96,7 @@ export class DynamicDetailComponent implements /* AfterViewInit,*/ OnChanges, On
         this.wasViewInitialized = true;
         this.refreshContent();
     }
+
     public ngOnDestroy(){
       if (this.componentRef) {
           this.componentRef.destroy();

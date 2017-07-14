@@ -8,27 +8,13 @@ import { ClarityCommonEditor } from './clarity.common-editor.abstract';
     template: `
     <div class="form-group">
       <label [for]="id">{{alias}}</label>
-      <input type="text" [id]="id" [(ngModel)]="entity[propertyName]">
+      <input #input type="number" [id]="id" [(ngModel)]="entity[propertyName]">
     </div>`,
 })
-export class ClarityNumberEditorComponent extends ClarityCommonEditor implements OnInit {
-  @ViewChild('div.form-group') inputChild: ElementRef;
-  @Input() size: string;
+export class ClarityNumberEditorComponent extends ClarityCommonEditor { // implements OnInit {
 
-  constructor(private el: ElementRef, private render: Renderer) {
-    super();
+  constructor(render: Renderer) {
+    super(render);
   }
 
-  ngOnInit() {
-    const hostElement = this.el.nativeElement;
-
-    // let input = hostElement.querySelector('input');
-    let input = this.inputChild;
-    if (this.size) {
-      this.render.setElementAttribute(input, "size", this.size)
-    }
-    else {
-      this.render.setElementAttribute(input, "size", null)
-    }
-  }
 }

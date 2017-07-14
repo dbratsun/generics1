@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, Renderer} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import {CommonEditor} from './common-editor.abstract';
 
@@ -14,5 +14,8 @@ import {CommonEditor} from './common-editor.abstract';
       </dd>
     </dl>`,
 })
-export class StringEditorComponent extends CommonEditor{
+export class StringEditorComponent extends CommonEditor {
+  constructor(render: Renderer) {
+    super(render);
+  }
 }

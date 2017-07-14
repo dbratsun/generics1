@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Renderer } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { CommonEditor } from './common-editor.abstract';
 
@@ -15,5 +15,8 @@ import { CommonEditor } from './common-editor.abstract';
     </dl>`,
 })
 export class NumberEditorComponent extends CommonEditor {
+  constructor(render: Renderer) {
+    super(render);
+  }
 }
 

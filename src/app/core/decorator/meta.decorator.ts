@@ -1,5 +1,11 @@
 import 'reflect-metadata';
 
+export enum metaPropertyOptions {
+    alias,
+    size,
+    placeholder
+}
+
 export class MetaDefinition {
     constructor(public propertyName: string, public propertyType: string) {}
 }
@@ -15,15 +21,15 @@ function MetaClassDecorator(className: string) {
             metaInfo.push(m);
         });
         Reflect.defineMetadata('types', metaInfo, target.prototype);
-        console.log('Decorator class:', target.prototype);
-        console.log('Types:', types);
+        // console.log('Decorator class:', target.prototype);
+        // console.log('Types:', types);
     }
 }
 
 export const MetaPropertyDecorator = (options): PropertyDecorator => {
     return (target, property) => {
         const entity = target.constructor.prototype;
-        console.log('property target: ', entity);
+        // console.log('property target: ', entity);
         const metadata = Reflect.getMetadata('options', entity) || {}
         const propertyType = Reflect.getMetadata('design:type', entity, property);
         metadata[property] = {type: propertyType.name, options: options};

@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { MetaDefinition } from '../core/decorator/meta.decorator';
+import { Injectable, Output } from '@angular/core';
+import { MetaDefinition, metaPropertyOptions } from '../core/decorator/meta.decorator';
 import 'reflect-metadata';
 
 /*
@@ -9,6 +9,10 @@ function getClass(object) {
 }
 */
 
+export enum decoratorOptions {
+
+}
+
 @Injectable()
 export class DynamicTemplateBuilder {
 
@@ -16,29 +20,43 @@ export class DynamicTemplateBuilder {
         const metaInfo = Reflect.getMetadata('options', entity);
         const fields = Object.keys(metaInfo);
         let editor = '';
-        let template = '<form>';
+        let template = '<form> ';
         let index = 0;
         fields.forEach(propertyName => {
             index++;
             const property = metaInfo[propertyName];
             switch (property.type) {
                 case 'String': {
-                    editor = 'app-clarity-string-editor';
+                    editor = 'app-string-editor';
                     break;
                 }
                 case 'Number': {
-                    editor = 'app-clarity-number-editor';
+                    editor = 'app-number-editor';
                     break;
                 }
             }
             const alias = property.options.alias;
-            const id = 'formField_' + index;
+            const alias1 = property.options['alias'];
+            const id = 'f_' + index;
             template += `
-                <${editor} [propertyName]="'${propertyName}'"
-                           [entity]="entity"
+                <${editor} [propertyName]="'${propertyName}'" [entity]="entity" [id]="'${id}'" `;
+
+            for (var m in metaPropertyOptions) {
+              var isValueProperty = parseInt(m, 10) >= 0
+              if (isValueProperty) {
+                  if (property.options[metaPropertyOptions[m]]) {
+                    const value = property.options[metaPropertyOptions[m]];
+                    const s = `[${metaPropertyOptions[m]}]="'${value}'" `;
+                    template += s;
+                  }
+              }
+            }
+            template += `></${editor}>`
+            /*
                            [alias]="'${alias}'"
                            [id]="'${id}'"
                            [size]=30></${editor}>`;
+            */
         });
         return template + '</form>';
     }

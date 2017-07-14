@@ -16,7 +16,7 @@ export class MaterialEditComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.material = new Material(1, 1234567, 'this is abc123', 'this is a Description');
+    this.material = new Material(1, 1, 1234567, 'this is abc123', 'abc123', '');
   }
 }
 
