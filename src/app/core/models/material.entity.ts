@@ -1,14 +1,16 @@
 import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 
-import { MetaPropertyDecorator } from '../core/decorator/meta.decorator';
-import { BaseEntity} from './base.entity';
-
+import { MetaPropertyDecorator, format, CustomComponent } from '../decorator/meta.decorator';
+import { BaseEntity, ToString } from './base.entity';
+import { Unit } from './unit.entity';
 
 // @metaClass("This_is_a_sample_entity")
 // cannot extend base class - problems with entity
-export class Material extends BaseEntity {
-    @MetaPropertyDecorator({alias: 'ID1', size: 3, description: 'This is a ID1'})
-    public id1: number;
+@CustomComponent('test')
+export class Material extends BaseEntity implements ToString {
+    // @MetaPropertyDecorator({alias: 'ID', description: 'This is a primary key' })
+    // public id: number;
+    // @format("Hello, %s")
     @MetaPropertyDecorator({alias: 'Code', size: 3, description: 'This is a Code', placeholder: 'please enter the code'})
     public code: number;
     @MetaPropertyDecorator({alias: 'Name', size: 35, description: 'This is a Name'})
@@ -17,13 +19,22 @@ export class Material extends BaseEntity {
     public shortname: string;
     @MetaPropertyDecorator({alias: 'Description', size: 50, description: 'This is a Description', placeholder: 'please write here a short Description'})
     public description?: string;
+    // @MetaPropertyDecorator({alias: 'Unit', size: 60, description: 'This is a Unit'})
+    // public unit: Unit;
 
-    constructor(id: number, id1: number, code: number, name: string, shortname: string, description?: string) {
+    // private formatedString: string;
+
+    constructor(id: number, code: number, name: string /*, unit?: Unit*/ , shortname: string, description?: string) {
         super(id);
-        this.id1 = id1;
+        // this.id = id;
         this.code = code;
         this.name = name;
+        // this.unit = unit;
         this.shortname = shortname;
         this.description = description;
+    }
+
+    public toString(): string {
+        return this.name;
     }
 }

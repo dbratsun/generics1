@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DynamicDetailComponent } from '../../dynamic/detail.view';
 
-import { Unit } from '../../models/unit.entity';
+import { Unit } from '../../core/models/unit.entity';
 
 
 @Component({

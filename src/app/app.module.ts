@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Compiler } from '@angular/core';
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import { Http, BaseRequestOptions } from '@angular/http';
+
 import { JitCompilerFactory } from '@angular/compiler';
 
 import { ClarityModule } from 'clarity-angular';
@@ -10,9 +13,27 @@ import { DynamicModule } from './dynamic/dynamic.module';
 import { UiModule } from './ui/ui.module';
 import { ModulesModule } from './modules/modules.module';
 
+import { MockService } from './core/mock-backend/mock.service';
+import { MaterialsService } from './core/mock-backend/materials.service';
+
 // Need an exported function to make it work with AOT:
 export function createJitCompiler () {
     return new JitCompilerFactory([{useDebug: false, useJit: true}]).createCompiler();
+}
+
+function MockBackendFactory(backend: MockBackend,
+                            options: BaseRequestOptions) {
+    backend.connections.subscribe((connection: MockConnection) => {
+        setTimeout(() => {
+        }, 100);
+    });
+    return new Http(backend, options);
+}
+
+export let MockBackendProvider = {
+    provide: Http,
+    deps: [MockBackend, BaseRequestOptions],
+    useFactory: MockBackendFactory
 }
 
 @NgModule({
@@ -28,7 +49,12 @@ export function createJitCompiler () {
     DynamicModule.forRoot()
   ],
   providers: [
-    { provide: Compiler, useFactory: createJitCompiler }
+    { provide: Compiler, useFactory: createJitCompiler },
+    MockService,
+    MockBackend,
+    BaseRequestOptions,
+    MockBackendProvider,
+    MaterialsService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MockService } from './core/mock-backend/mock.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  constructor(private mockService: MockService) {
+    this.mockService.start();  
+  }
 }

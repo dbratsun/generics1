@@ -9,6 +9,8 @@ import { MaterialEditComponent } from './material/material-edit.component';
 import { UnitEditComponent } from './unit/unit-edit.component';
 import { DynamicModule } from '../dynamic/dynamic.module';
 
+import { MockService } from '../core/mock-backend/mock.service';
+
 const COMPONENTS = [
     MaterialEditComponent,
     UnitEditComponent
@@ -21,6 +23,9 @@ const COMPONENTS = [
     RouterModule,
     DynamicModule,
     ClarityModule
+  ],
+  providers: [
+    MockService
   ],
   declarations: [
     ...COMPONENTS,

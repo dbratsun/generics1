@@ -5,7 +5,7 @@ import { OnChanges, SimpleChange, ComponentFactory} from '@angular/core';
 import { IHaveDynamicData, DynamicTypeBuilder } from './type.builder';
 import { DynamicTemplateBuilder } from './template.builder';
 
-import { Material } from '../models/material.entity';
+// import { Material } from '../models/material.entity';
 
 @Component({
   selector: 'app-dynamic-detail',

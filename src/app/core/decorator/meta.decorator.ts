@@ -27,12 +27,38 @@ function MetaClassDecorator(className: string) {
 }
 
 export const MetaPropertyDecorator = (options): PropertyDecorator => {
-    return (target, property) => {
+    return (target: Function, property) => {
         const entity = target.constructor.prototype;
-        // console.log('property target: ', entity);
+        const proto = target.prototype;
+        const protoConstructor = target.constructor.prototype;
+        console.log('property target: ', target, ' property name: ', property);
         const metadata = Reflect.getMetadata('options', entity) || {}
         const propertyType = Reflect.getMetadata('design:type', entity, property);
+        const propertyMetadata = Reflect.getMetadata('propMetadata', target);
+        const annotationsMetadata = Reflect.getMetadata('annotations', target);
         metadata[property] = {type: propertyType.name, options: options};
         Reflect.defineMetadata('options', metadata, entity);
     }
 }
+
+const formatMetadataKey = Symbol("format");
+
+export function format(formatString: string) {
+    return Reflect.metadata(formatMetadataKey, formatString);
+}
+
+export function getFormat(target: any, propertyKey: string) {
+    return Reflect.getMetadata(formatMetadataKey, target, propertyKey);
+}
+
+export function CustomComponent(annotation: any) {
+  return function (target: Function) {
+    var parentTarget = Object.getPrototypeOf(target.prototype).constructor;
+    var pT = target.prototype.constructor;
+    var Target = target.prototype;
+    var parentPropMetadata = Reflect.getMetadata('options', parentTarget);
+    var targetPropMetadata = Reflect.getMetadata('options', Target);
+  };
+}
+
+
