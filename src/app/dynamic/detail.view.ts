@@ -1,5 +1,5 @@
 import { Component, Input, ComponentRef, ViewChild, ViewContainerRef} from '@angular/core';
-import { AfterViewInit, OnInit, OnDestroy} from '@angular/core';
+import { AfterViewInit, OnInit, OnDestroy } from '@angular/core';
 import { OnChanges, SimpleChange, ComponentFactory} from '@angular/core';
 
 import { IHaveDynamicData, DynamicTypeBuilder } from './type.builder';
@@ -14,6 +14,7 @@ import { DynamicTemplateBuilder } from './template.builder';
         <div #dynamicContentPlaceHolder></div>
         <hr />
         entity: <pre>{{entity | json}}</pre>
+        <app-stringeditor-1 id="aaaa" label="test"></app-stringeditor-1>
     </div>
   `
 })

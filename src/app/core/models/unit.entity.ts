@@ -1,30 +1,65 @@
-import { MetaPropertyDecorator } from '../decorator/meta.decorator';
+import { MetaPropertyDecorator, Field, CustomClassDecorator, StringEditorTypes, StringEditorOptions, NumberEditorTypes, NumberEditorOptions } from '../decorator/meta.decorator';
 import { BaseEntity, ToString } from './base.entity';
 
 
 // @metaClass("This_is_a_sample_entity")
+@CustomClassDecorator('test')
 export class Unit extends BaseEntity implements ToString  {
     // @MetaPropertyDecorator({alias: 'ID', size: 10, description: 'This is a ID'})
-    // public id: number;
-    @MetaPropertyDecorator({alias: 'ShortName', size: 10, description: 'This is a Shortname'})
+    /*
+    @Field({
+        alias: 'ID1',
+        description: 'This is a primary key'
+    })
+    public id: number;
+    */
+    // @MetaPropertyDecorator({alias: 'ShortName', size: 10, description: 'This is a Shortname'})
+    @Field({
+        alias: 'ShortName',
+        string_options: {
+            type: StringEditorTypes.text    
+        },
+        size: 10,
+        description: 'This is a Shortname',
+        placeholder: ''
+    })
     public shortname: string;
-    @MetaPropertyDecorator({alias: 'Code', size: 10, description: 'This is a Code'})
-    public code: string;
-    @MetaPropertyDecorator({alias: 'Name', description: 'This is a Name'})
+
+    // @MetaPropertyDecorator({alias: 'Code', size: 10, description: 'This is a Code'})
+    @Field({
+        alias: 'Unitcode', size: 10, description: 'This is a Code',
+        number_options: {
+            type: NumberEditorTypes.number,
+            min: 1,
+            max: 10
+        }
+    })
+    public code: number;
+
+    // @MetaPropertyDecorator({alias: 'Name', description: 'This is a Name'})
+    @Field({
+        alias: 'Name',
+        description: 'This is a Name'
+    })
     public name: string;
-    @MetaPropertyDecorator({alias: 'Description', description: 'This is a Description'})
+
+    // @MetaPropertyDecorator({alias: 'Description', description: 'This is a Description'})
+    @Field({
+        alias: 'Description',
+        description: 'This is a Description'
+    })
     public description?: string;
 
-    constructor(id: number, shortname: string, code: string, name: string, description?: string) {
+    constructor(id: number, shortname: string, unitcode: number, name: string, description?: string) {
         super(id);
         // this.id = id;
         this.shortname = shortname;
-        this.code = code;
+        this.code = unitcode;
         this.name = name;
         this.description = description;
     }
 
     public toString(): string {
-        return this.name;
+        return this.shortname;
     }
 }

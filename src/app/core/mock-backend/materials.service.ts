@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { /*Http, */ Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -27,20 +28,30 @@ export class MaterialsService {
         return Observable.throw(errMsg);
     }
 
-    constructor(private http: Http) { }
+    constructor(private http: HttpClient) { }
 
     list(): Observable<Material[]> {
+        return this.http
+            .get<Material[]>("http://localhost:3000/materials")
+            // .catch(MaterialsService.handleError)
+        /*
         return this.http.get('materials')
             .map(response => { 
                 let r = response.json() as Material[];
                 return r;
             })
             .catch(MaterialsService.handleError);
+        */    
     }
-    
+       
     getMaterial(id: number): Observable<Material> {
-        return this.http.get(`materials/${id}`)
+        return this.http
+            .get<Material>(`localhost:3000/materials/${id}`)
+            .catch(MaterialsService.handleError);
+        /*
+        return this.http.get(`localhost:3000/materials/${id}`)
             .map(response => response.json() as Material)
             .catch(MaterialsService.handleError); 
+        */    
     }
 }

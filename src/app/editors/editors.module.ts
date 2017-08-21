@@ -13,6 +13,7 @@ import { NumberEditorComponent } from './components/number-editor.component';
 import { InputComponent } from './components/input-base.component';
 import { LabelComponent } from './components/label-base.component';
 import { PropertyEditorComponent } from './components/property-editor.component';
+import { PropertyEditorComponent1, PropertyEditorInputComponent1, PropertyEditorLabelComponent1, StringEditorComponent1 } from './property_editor.component';
 
 
 export const DYNAMIC_DIRECTIVES = [
@@ -24,6 +25,10 @@ export const DYNAMIC_DIRECTIVES = [
     forwardRef( () => StringEditorComponent),
     forwardRef( () => ClarityNumberEditorComponent),
     forwardRef( () => ClarityStringEditorComponent),
+    // forwardRef( () => PropertyEditorComponent1),
+    forwardRef( () => PropertyEditorInputComponent1),
+    forwardRef( () => PropertyEditorLabelComponent1),
+    forwardRef( () => StringEditorComponent1),
     DynamicDetailComponent
 ]
 

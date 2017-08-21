@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, Renderer } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { CommonEditor } from '../common-editor.abstract';
+import { CommonEditor } from '../old/common-editor.abstract';
 import { ClarityCommonEditor } from './clarity.common-editor.abstract';
 
 @Component({

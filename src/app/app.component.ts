@@ -8,7 +8,9 @@ import { MockService } from './core/mock-backend/mock.service';
 })
 export class AppComponent {
   title = 'app';
+  /*
   constructor(private mockService: MockService) {
     this.mockService.start();  
   }
+  */
 }

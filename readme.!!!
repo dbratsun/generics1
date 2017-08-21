@@ -16,3 +16,14 @@ https://medium.com/@OlegVaraksin/set-up-a-http-service-for-backendless-developme
 PrimeNG
 https://www.primefaces.org/primeng/#/
 
+Npm Check Updates
+install - npm install npm-check-updates -g
+what the new version - ncu
+update - ncu -u
+
+
+Mock with angular 4.3 HttpClient Module
+https://github.com/typicode/json-server
+https://www.techiediaries.com/angular-http-client/
+
+

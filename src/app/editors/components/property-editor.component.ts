@@ -1,4 +1,4 @@
-import { Component, Input, Renderer, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Inject, Renderer, ElementRef, ViewChild } from '@angular/core';
 import { PropertyEditorBaseComponent } from './property-editor-base.component.abstract';
 import { InputComponent } from './input-base.component';
 import { LabelComponent } from './label-base.component';
