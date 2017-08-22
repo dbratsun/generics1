@@ -1,8 +1,10 @@
+namespace ClassReflection1 {
 // import { Product } from './meta.decorator';
-import 'reflect-metadata';
+// import 'reflect-metadata';
 
 // based on https://spin.atomicobject.com/2017/04/24/typescript-modular-typesafe-metadata/
 
+/*
 interface PresentationOptionCommon {
     required?: boolean;
     searchable?: boolean;
@@ -26,7 +28,6 @@ type PropertyPresentationMap<T> = {
   [P in keyof T]?: PresentationOptions<T[P]>;
 };
 
-
 export class PropertyDefinition<T> {
     constructor(public propertyName: string, public options: PresentationOptions<T>[]) {
 
@@ -36,6 +37,8 @@ export class PropertyDefinition<T> {
 export interface PropertyDefinitionDictionary<T> {
     [key: string]: PropertyPresentationMap<T>
 }
+
+*/
 
 /*
 export class ClassDefinition<T> {
@@ -47,8 +50,7 @@ export interface ClassDefinitionDictionary {
 }
 */
 
-////
-////
+/*
 
 export interface IDefinition<T> {
     className: string;
@@ -75,18 +77,16 @@ export interface CDefinitionDictionary {
     [key: string]: CDefinitionCommon;
 }
 
+*/
+
+/*
 export class DefinitionFactory implements CDefinitionDictionary {
     [key: string]: CDefinitionCommon;
     newDefinition(className: string): void {}
 }
+*/
 
-////
-////
-
-
-// export let MetaFactory: ClassDefinition[] = new Array<ClassDefinition>();
-export let MetaFactory: CDefinitionDictionary = {};
-
+/*
 export function findClassDefinition(className: string) {
   for (var c in MetaFactory) {
     if (className == MetaFactory[c].className) {
@@ -129,10 +129,133 @@ export function MetadataType(metaFunction: Function) {
   }
 }
 
+*/
+
+
+// Property definition
+
+    interface PropertyOptionsCommon<PropertyType> {
+        defaultValue?: PropertyType
+    }
+
+    interface PropertyOptionsBase<PropertyType> extends PropertyOptionsCommon<PropertyType> {
+        alias?: string;
+        required?: boolean;
+        searchable?: boolean;
+        sortable?: boolean;
+        size?: number;
+        placeholder?: string;
+    }
+
+    type PropertyCommonMap<T> = {
+        [P in keyof T]?: PropertyOptionsCommon<T[P]>;
+    }
+
+    type PropertyBaseMap<T> = {
+        [P in keyof T]?: PropertyOptionsBase<T[P]>;
+    }
+
+    /*
+    export class PropertyDefinition<T> {
+        constructor(public propertyName: string, public options: PropertyOptionsCommon<T>[]) {
+        }
+    }
+    */
+
+    /*
+    export interface PropertyDefinitionDictionary<T> {
+        [key: string]: PropertyMap<T>
+    }
+    */
+    // Class definition
+
+    /*
+    export interface IClassDefinition<T> {
+        className: string;
+        properties: PropertyMap<T>
+    }
+    */
+
+    abstract class ClassDefinitionCommon {
+        constructor(public className: string) {}
+        abstract setProperties(prop: any, propName: string);
+    }
+
+    class ClassDefinition<T> extends ClassDefinitionCommon {
+        public properties: PropertyCommonMap<T>;
+        constructor(className: string) {
+            super(className);
+            this.properties = {}
+        }
+        setProperties(prop: any, propName: string) {
+            this.properties[propName] = prop;
+        }
+    }
+
+    export interface ClassDefinitionDictionary {
+        [key: string]: ClassDefinitionCommon;
+    }
+
+    // Factory
+
+    export let MetaFactory: ClassDefinitionDictionary = {};
+
+    export function findClassDefinition(className: string) {
+    for (var c in MetaFactory) {
+        if (className == MetaFactory[c].className) {
+            return c;
+        }
+    }
+    return null;
+    }
+
+    export function definePresentation<T>(entity: new (...args: any[]) => T, props: PropertyCommonMap<T>): void {
+    for (let propertyName in props) {
+        if (props.hasOwnProperty(propertyName)) {
+        // Reflect.defineMetadata("scalable", props[propertyName], entity.prototype, propertyName);
+        let c = findClassDefinition(entity.name);
+        let p = props[propertyName]
+        if (c != null) {
+            const classDef = MetaFactory[c];
+            MetaFactory[c].setProperties(props[propertyName], propertyName)
+        }
+        else {
+            const classDef = new ClassDefinition<T>(entity.name);
+            classDef.setProperties(props[propertyName], propertyName);
+            MetaFactory[entity.name] = classDef;
+        }
+        }
+    }
+    // const meta = Reflect.getMetadata("scalable", entity.prototype, 'name');
+    }
+
+    export function MetadataType(metaFunction: Function) {
+    return function (target: Function) {
+        metaFunction();
+        // const meta = Reflect.getMetadata('scalable', target.prototype, 'name');
+    }
+    }
+
 @MetadataType(CustomerMetadata)
 export class Customer {
     id: number;
     name: string;
+}
+
+export function CustomerMetadata() {
+    let customerMap: PropertyBaseMap<Customer> = {
+        id: {
+            defaultValue: 0,
+            sortable: true
+        },
+        name: {
+            defaultValue: "",
+            alias: "Name",
+            sortable: true,
+            searchable: true
+        }
+    }
+    definePresentation(Customer, customerMap)
 }
 
 @MetadataType(ProductMetadata)
@@ -142,39 +265,19 @@ export class Product {
     code: number;
 }
 
-export function CustomerMetadata() {
-    definePresentation(Customer, {
+export function ProductMetadata() {
+    let productMap: PropertyCommonMap<Product> = {
         id: {
-            sortable: true,
-            displayName: 'Customer ID',
-            tableDisplay: false,
-            columnWidth: 10,
             defaultValue: 0
         },
         name: {
-            searchable: true,
-	          sortable: true,
-	          required: true,
-	          displayName: 'Customer Name',
-	          tableDisplay: true,
-            columnWidth: 20,
-            defaultValue: "Empty Customer"
-        }
-    })
-}
-
-export function ProductMetadata() {
-    definePresentation(Product, {
-        id: {
-            defaultValue: 0,
-            columnWidth: 10
-        },
-        name: {
-            searchable: true,
             defaultValue: ""
         },
         code: {
             defaultValue: 0
         }
-    })
+    }
+    definePresentation(Product, productMap);
+}
+
 }

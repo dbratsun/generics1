@@ -19,7 +19,7 @@ import { DynamicModule } from './dynamic/dynamic.module';
 import { UiModule } from './ui/ui.module';
 import { ModulesModule } from './modules/modules.module';
 
-import { MetaFactory } from '../app/core/decorator/scalable.decorator';
+// import { MetaFactory } from '../app/core/decorator/scalable.decorator';
 
 // Need an exported function to make it work with AOT:
 export function createJitCompiler () {

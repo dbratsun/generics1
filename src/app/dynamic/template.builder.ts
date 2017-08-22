@@ -1,7 +1,9 @@
 import { Injectable, Output, Component } from '@angular/core';
 import { MetaDefinition, metaPropertyOptions, FieldDefinitionTypes, FieldDefinition, setFields } from '../core/decorator/meta.decorator';
 import { TemplateFactory } from '../editors/editors.factory';
-import { CustomerMetadata, Customer, Product } from '../core/decorator/scalable.decorator';
+// import { CustomerMetadata, Customer /*, Product*/ } from '../core/decorator/scalable.decorator';
+import '../core/reflection/reflect-class';
+import { Customer, Product, MyClass } from '../core/reflection/sampleClasses';
 import 'rxjs/add/operator/map';
 import 'reflect-metadata';
 

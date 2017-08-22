@@ -1,3 +1,4 @@
+/*
 import { Type, ClassDefinition, TypeDecorator } from '@angular/core';
 export abstract class Decorator {
     constructor() {}
@@ -18,7 +19,7 @@ export interface BaseInfo {
     _decorators: TypeDecorator[]
 
 }
-
+*/
 
 
 
