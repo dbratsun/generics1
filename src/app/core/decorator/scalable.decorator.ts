@@ -1,4 +1,4 @@
-namespace ClassReflection1 {
+export namespace ClassReflection1 {
 // import { Product } from './meta.decorator';
 // import 'reflect-metadata';
 

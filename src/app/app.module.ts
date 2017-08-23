@@ -19,6 +19,8 @@ import { DynamicModule } from './dynamic/dynamic.module';
 import { UiModule } from './ui/ui.module';
 import { ModulesModule } from './modules/modules.module';
 
+import { ModelsModule } from '../app/core/models/models.module';
+
 // import { MetaFactory } from '../app/core/decorator/scalable.decorator';
 
 // Need an exported function to make it work with AOT:
@@ -55,6 +57,7 @@ export let MockBackendProvider = {
     ModulesModule,
     DynamicModule.forRoot(),
     HttpClientModule
+    // ModelsModule
   ],
   providers: [
     { provide: Compiler, useFactory: createJitCompiler },

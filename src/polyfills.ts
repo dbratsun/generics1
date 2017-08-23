@@ -50,6 +50,7 @@ import 'core-js/es7/reflect';
 // import 'web-animations-js';  // Run `npm install --save web-animations-js`.
 
 import 'reflect-metadata';
+import './app/core/reflection/reflect-class';
 
 /***************************************************************************************************
  * Zone JS is required by Angular itself.

@@ -1,12 +1,14 @@
-namespace ClassReflection {
+export namespace ClassReflection {
+    "use strict";
     // Property definition
 
     export interface PropertyOptionsCommon<T> {
+        alias?: string;
+        description?: string;
         defaultValue?: T
     }
 
     export interface PropertyOptionsBase<T> extends PropertyOptionsCommon<T> {
-        alias?: string;
         required?: boolean;
         searchable?: boolean;
         sortable?: boolean;
@@ -57,7 +59,8 @@ namespace ClassReflection {
         return null;
     }
 
-    export function DefinePresentation<T>(entity: new (...args: any[]) => T, props: PropertyCommonMap<T>): void {
+    export function DefineMap<T>(entity: new (...args: any[]) => T, props: PropertyCommonMap<T>): void {
+        const i = 0;
         for (let propertyName in props) {
             if (props.hasOwnProperty(propertyName)) {
             let c = findClassDefinition(entity.name);

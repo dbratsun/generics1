@@ -1,4 +1,6 @@
-import './reflect-class';
+// import * as R from './reflect-class';
+
+import { ClassReflection } from './reflect-class';
 
 @ClassReflection.MetadataType(CustomerMetadata)
 export class Customer {
@@ -19,7 +21,7 @@ export function CustomerMetadata() {
             searchable: true
         }
     }
-    ClassReflection.DefinePresentation(Customer, customerMap)
+    ClassReflection.DefineMap(Customer, customerMap)
 }
 
 @ClassReflection.MetadataType(ProductMetadata)
@@ -41,7 +43,7 @@ export function ProductMetadata() {
             defaultValue: 0
         }
     }
-    ClassReflection.DefinePresentation(Product, productMap);
+    ClassReflection.DefineMap(Product, productMap);
 }
 
 // 
@@ -68,6 +70,7 @@ function MyClassMetadata() {
             color: 5
         }
     }
+    ClassReflection.DefineMap(MyClass, myMap);
 }
 
 @ClassReflection.MetadataType(MyClassMetadata)
@@ -76,3 +79,5 @@ export class MyClass {
     propertyA: number;
     propertyB?: number;
 }
+
+var a: MyClass = new MyClass();
