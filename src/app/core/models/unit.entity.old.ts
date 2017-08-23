@@ -1,10 +1,10 @@
 import { MetaPropertyDecorator, Field, CustomClassDecorator, StringEditorTypes, StringEditorOptions, NumberEditorTypes, NumberEditorOptions } from '../decorator/meta.decorator';
-import { BaseEntity, ToString } from './base.entity';
+import { BaseEntityOld, ToStringOld } from './base.entity.old';
 
 
 // @metaClass("This_is_a_sample_entity")
 @CustomClassDecorator('test')
-export class Unit extends BaseEntity implements ToString  {
+export class UnitOld extends BaseEntityOld implements ToStringOld  {
     // @MetaPropertyDecorator({alias: 'ID', size: 10, description: 'This is a ID'})
     /*
     @Field({

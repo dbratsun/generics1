@@ -1,4 +1,3 @@
-import { MetaPropertyDecorator, CustomComponent, Field, CustomClassDecorator, NumberEditorOptions, NumberEditorTypes } from '../../core/decorator/meta.decorator';
 import { ClassReflection } from '../reflection/reflect-class';
 
 
@@ -6,25 +5,9 @@ export interface PrimaryID {
     id: number;
 }
 
-/*
-@CustomClassDecorator({
-    description: 'this is a base class for dynamic component models',
-    visible: false    
-})
-export abstract class BaseEntity implements PrimaryID {
-    @Field({
-        alias: 'ID',
-        number_options: {
-            type: NumberEditorTypes.number
-        },
-        description: 'This is a primary key'
-    })
-    public id: number;
-    constructor (id: number) {
-        this.id = id;
-    }
+export interface ToString {
+    toString(): string;
 }
-*/
 
 export function BaseEntityMetadata() {
     let baseEntityMap: ClassReflection.PropertyBaseMap<BaseEntity> = {
@@ -47,6 +30,3 @@ export class BaseEntity implements PrimaryID {
     }
 }
 
-export interface ToString {
-    toString(): string;
-}

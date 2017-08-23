@@ -1,15 +1,15 @@
 import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 
 import { MetaPropertyDecorator, format, CustomComponent, isTestable, Field, CustomClassDecorator } from '../decorator/meta.decorator';
-import { BaseEntity, ToString } from './base.entity';
-import { Unit } from './unit.entity';
+import { BaseEntityOld, ToStringOld } from './base.entity.old';
+import { UnitOld } from './unit.entity.old';
 
 // @metaClass("This_is_a_sample_entity")
 // cannot extend base class - problems with entity
 // @CustomComponent('test')
 // @isTestable(true)
 @CustomClassDecorator('test')
-export class Material  extends BaseEntity implements ToString {
+export class MaterialOld  extends BaseEntityOld implements ToStringOld {
     // @MetaPropertyDecorator({alias: 'ID', description: 'This is a primary key' })
     /*
     @Field({
