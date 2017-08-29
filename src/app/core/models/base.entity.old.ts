@@ -13,7 +13,7 @@ export interface ToStringOld {
     description: 'this is a base class for dynamic component models',
     visible: false    
 })
-export abstract class BaseEntityOld implements PrimaryIDOld {
+export class BaseEntityOld implements PrimaryIDOld {
     @Field({
         alias: 'ID',
         number_options: {

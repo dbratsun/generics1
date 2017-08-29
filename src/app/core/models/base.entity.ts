@@ -30,3 +30,26 @@ export class BaseEntity implements PrimaryID {
     }
 }
 
+export function BaseEntityLevel2Metadata() {
+    let baseEntityLevel2Map: ClassReflection.PropertyBaseMap<BaseEntityLevel2> = {
+        id1: {
+            alias: 'ID1'
+        },
+        name1: {
+            alias: 'Name1'
+        }
+    }
+    ClassReflection.DefineMap(BaseEntityLevel2, baseEntityLevel2Map)
+}
+
+@ClassReflection.MetadataType(BaseEntityLevel2Metadata)
+export class BaseEntityLevel2 extends BaseEntity {
+    public id1: number;
+    public name1: string;
+    constructor(id: number, id1: number, name1: string) {
+        super(id);
+        this.id1 = id1;
+        this.name1 = name1;
+    }
+}
+

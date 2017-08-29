@@ -8,7 +8,7 @@ import { UnitOld } from '../../core/models/unit.entity.old';
 @Component({
   selector: 'app-unit-edit',
   template: `
-    <app-dynamic-detail [entity]="unit"></app-dynamic-detail>
+    <app-dynamic-detail [entity]="unitOld"></app-dynamic-detail>
   `
 })
 
@@ -19,7 +19,7 @@ export class UnitEditComponent implements OnInit {
 
   ngOnInit() {
     this.unit = new Unit(1, 'kg', 2, 'this is a kilo', 'this is a Description');
-    // this.unitOld = new UnitOld(1, 'kg', 2, 'this is a kilo', 'this is a Description');
+    this.unitOld = new UnitOld(1, 'kg', 2, 'this is a kilo', 'this is a Description');
   }
 }
 

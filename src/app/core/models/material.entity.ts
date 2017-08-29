@@ -1,5 +1,5 @@
 import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
-import { BaseEntity, ToString } from './base.entity';
+import { BaseEntity, BaseEntityLevel2, ToString } from './base.entity';
 import { Unit } from './unit.entity';
 import { ClassReflection } from '../reflection/reflect-class';
 
@@ -33,7 +33,7 @@ function MaterialMetadata() {
 }
 
 @ClassReflection.MetadataType(MaterialMetadata)
-export class Material  extends BaseEntity implements ToString {
+export class Material  extends BaseEntityLevel2 implements ToString {
     public name: string;
     public code: number;
     public shortname: string;
@@ -42,8 +42,8 @@ export class Material  extends BaseEntity implements ToString {
     // public unit: Unit;
     // private formatedString: string;
 
-    constructor(id: number, code: number, name: string /*, unit?: Unit */ , shortname: string, description?: string ) {
-        super(id);
+    constructor(id: number, id1: number, name1: string, code: number, name: string /*, unit?: Unit */ , shortname: string, description?: string ) {
+        super(id, id1, name1);
         // this.id = id;
         this.code = code;
         this.name = name;
@@ -53,7 +53,7 @@ export class Material  extends BaseEntity implements ToString {
     }
 
     public static CreateInstance() {
-        new Material(0,0,'','');
+        new Material(0, 0, '', 0, '', '');
     }
 
     public toString(): string {

@@ -23,8 +23,8 @@ export class MaterialEditComponent implements OnInit {
 
   ngOnInit() {
     // let unit: Unit = new Unit(1, 'кг', '02', 'килограмм');
-    // this.material = new Material(1, 1234567, 'this is abc123', /* null,*/ 'abc123', '');
-    
+    this.material = new Material(1, 2, 'this is name1 from level1', 1234567, 'this is abc123', /* null,*/ 'abc123', '');
+    /*
     this.service.list().subscribe(
         materials => {
           // Object.assign(this.material, materials[0]);
@@ -32,7 +32,7 @@ export class MaterialEditComponent implements OnInit {
           this.material = materials[0] as Material;
         }
     )
-    
+    */
     // let a = this.material;
     // this.material = a;
   }
